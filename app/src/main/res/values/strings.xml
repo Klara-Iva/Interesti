@@ -2,4 +2,5 @@
     <string name="app_name">Interesti</string>
     <string name="title_activity_maps">Welcome to Virovitica!</string>
     <string name="title_info">Keep it interesting...</string>
+    <string name="aboutapp">About this app</string>
 </resources>

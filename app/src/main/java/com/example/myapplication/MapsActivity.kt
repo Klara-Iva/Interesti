@@ -28,7 +28,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTitle("Welcome to Virovitica")
+        setTitle("Welcome to Virovitica!")
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val mapFragment = supportFragmentManager
@@ -77,7 +77,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
         }
+        val infobtn=findViewById<ImageButton>(R.id.about)
+        infobtn.setOnClickListener(){
+            val intent = Intent(this, InfoFragmentContainer::class.java)
+            startActivity(intent)
+            true
 
+        }
 
     }
 
