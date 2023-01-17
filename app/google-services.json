@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "137532064848",
+    "project_id": "orwima-lv8",
+    "storage_bucket": "orwima-lv8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137532064848:android:82e0d29a8e3650d8cc3d55",
+        "android_client_info": {
+          "package_name": "com.example.lv8"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "137532064848-3jp0gcqvo0ofjhrutm7nikoh9m4da66r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrObHQCoo5CNY0kendme-lcATQU6Jp_2o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "137532064848-3jp0gcqvo0ofjhrutm7nikoh9m4da66r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137532064848:android:8a7444accc570d94cc3d55",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "137532064848-3jp0gcqvo0ofjhrutm7nikoh9m4da66r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrObHQCoo5CNY0kendme-lcATQU6Jp_2o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "137532064848-3jp0gcqvo0ofjhrutm7nikoh9m4da66r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
