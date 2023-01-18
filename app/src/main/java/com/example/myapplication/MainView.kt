@@ -1,13 +1,20 @@
 package com.example.myapplication
 
+import android.R.id.message
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
+import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.ktx.firestore
@@ -41,10 +48,15 @@ class MainView : AppCompatActivity(){
                     }))
                 recyclerAdapter = LocationRecyclerAdapter(sortedList as ArrayList<MyLocation>)
 
+                val backbutton=findViewById<ImageButton>(R.id.buttonback)
+                backbutton.setOnClickListener(){
+                    finish()
+                }
 
                 val targetedLocationInput=findViewById<EditText>(R.id.TypeLocationName)
                 targetedLocationInput.setOnEditorActionListener(OnEditorActionListener { v, actionId, event ->
                     if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                        hideKeyboard()
                         performSearch(sortedList)
                         return@OnEditorActionListener true
                     }
@@ -81,7 +93,7 @@ class MainView : AppCompatActivity(){
                     sortedList2.add(data)
             }
             if(sortedList2.isEmpty()){
-
+                hideKeyboard()
                 Toast.makeText(this,"No targeted location found",Toast.LENGTH_LONG).show()
 
 
@@ -108,5 +120,17 @@ class MainView : AppCompatActivity(){
                 adapter = recyclerAdapter
             }
         }
+    }
+    fun Fragment.hideKeyboard() {
+        view?.let { activity?.hideKeyboard(it) }
+    }
+
+    fun Activity.hideKeyboard() {
+        hideKeyboard(currentFocus ?: View(this))
+    }
+
+    fun Context.hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }
