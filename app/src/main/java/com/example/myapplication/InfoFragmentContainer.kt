@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 
@@ -19,6 +20,7 @@ class InfoFragmentContainer: AppCompatActivity()  {
             replace(R.id.fragmentContainerView, firstFragment)
             commit()
         }
+
 
     }
 }

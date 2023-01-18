@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstFragment">
+    tools:context=".SecondFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -21,21 +21,14 @@
             <TextView
                 android:id="@+id/descriptionaboutme"
                 android:layout_width="401dp"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:layout_below="@+id/textView3"
-                android:layout_alignParentStart="false"
-                android:layout_alignParentLeft="false"
-                android:layout_alignParentEnd="false"
-                android:layout_alignParentRight="false"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="0dp"
+
+
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="60dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginBottom="60dp"
                 android:fontFamily="@font/alike"
-                android:paddingBottom="70dp"
                 android:text="Who am I even?" />
 
             <TextView
@@ -54,17 +47,46 @@
                 android:id="@+id/goback"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/descriptionaboutme"
+                android:layout_below="@+id/meimage"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="0dp"
                 android:layout_marginLeft="0dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="26dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginBottom="30dp"
+                android:backgroundTint="?colorButtonNormal"
                 android:fontFamily="@font/alike"
                 android:text="Back to the app info"
                 android:textSize="17sp" />
 
+            <ImageView
+                android:id="@+id/meimage"
+                android:layout_width="wrap_content"
+                android:layout_height="350dp"
+                android:layout_below="@+id/descriptionaboutme"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="0dp"
+                android:paddingBottom="0dp"
+
+                tools:srcCompat="@tools:sample/avatars" />
+            <ImageButton
+                android:id="@+id/buttonme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/circle_37"
+                android:backgroundTint="?colorOnSecondary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:padding="4dp"
+                android:layout_margin="10dp"
+                app:srcCompat="@drawable/backbtn"
+                android:scaleType="centerInside"
+                />
 
         </RelativeLayout>
     </ScrollView>
