@@ -36,13 +36,13 @@
 
             <TextView
                 android:id="@+id/textView3"
-                android:layout_width="213dp"
-                android:layout_height="38dp"
+                android:layout_width="284dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginStart="63dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="72dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="64dp"
                 android:layout_toEndOf="@+id/buttonapp"
                 android:fontFamily="@font/alike"
                 android:text="About this app"
