@@ -87,7 +87,7 @@ class MainView : AppCompatActivity(){
         val unos3=unos.text.toString().replaceFirstChar { it.uppercase() }
 
         if (unos.text.toString() != "") {
-            unos
+
             for (data in locationList) {
                 if (data.name.contains(unos3) || data.name.contains(unos2) )
                     sortedList2.add(data)
@@ -95,8 +95,6 @@ class MainView : AppCompatActivity(){
             if(sortedList2.isEmpty()){
                 hideKeyboard()
                 Toast.makeText(this,"No targeted location found",Toast.LENGTH_LONG).show()
-
-
             }
             else{
                 recyclerAdapter = LocationRecyclerAdapter(sortedList2 as ArrayList<MyLocation>)
