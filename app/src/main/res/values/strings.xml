@@ -3,4 +3,14 @@
     <string name="title_activity_maps">Welcome to Virovitica!</string>
     <string name="title_info">Keep it interesting...</string>
     <string name="aboutapp">About this app</string>
+
+    <string name="selected_item">Selected item:</string>
+    <string-array name="Languages">
+        <item>none</item>
+        <item>name</item>
+        <item>description</item>
+        <item>lati</item>
+        <item>long</item>
+
+    </string-array>
 </resources>

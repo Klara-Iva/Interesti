@@ -11,6 +11,7 @@ class InfoFragmentContainer: AppCompatActivity()  {
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         setContentView(R.layout.initialfragmentlayout)
 
         val firstFragment = FirstFragment()

@@ -37,7 +37,7 @@
     android:topLeftRadius="8dip"
     android:scaleType="centerInside"
     app:srcCompat="@drawable/ic_baseline_search_35"
-
+android:backgroundTint="?android:statusBarColor"
     />
 
     <ImageButton
@@ -55,7 +55,7 @@
         android:topLeftRadius="8dip"
         android:scaleType="centerInside"
         app:srcCompat="@drawable/info_35"
-
+        android:backgroundTint="?android:statusBarColor"
         />
 
 

@@ -9,6 +9,8 @@ android {
     namespace 'com.example.myapplication'
     compileSdk 32
 
+
+
     defaultConfig {
         applicationId "com.example.myapplication"
         minSdk 21
@@ -25,8 +27,8 @@ android {
 
         }
         debug{
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled false
+            shrinkResources false
         }
     }
     compileOptions {
