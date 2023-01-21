@@ -10,7 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import android.widget.TextView.OnEditorActionListener
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
+import androidx.core.view.iterator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
@@ -37,59 +37,73 @@ class MainView : AppCompatActivity(){
         val recyclerView = findViewById<RecyclerView>(R.id.viewer)
         val temporalLocationList: ArrayList<MyLocation> = ArrayList()
 
+    //TODO kako napraviti da se chipovi stalno osluskuju
 
         val chipGroup = findViewById<ChipGroup>(R.id.chipGroup)
 
-         chipGroup.setOnCheckedStateChangeListener(ChipGroup.OnCheckedStateChangeListener { group, checkedIds ->
+        for(chip in chipGroup){
+            chip.setOnClickListener(){
+                areChipsSelected(chipGroup)
+            }
+        }
+
+        chipGroup.setOnClickListener {
+            if (
+                chipGroup.checkedChipIds.isEmpty()) {
+
+                show(locationList)
+            }
+        }
+
+         chipGroup.setOnCheckedStateChangeListener { group, _ ->
              val ids = group.checkedChipIds
-                 chipselected.clear()
-                 for (id in ids) {
-                     val chip = group.findViewById<Chip>(id!!)
-                     chipselected.add(chip.text.toString())
-                     Toast.makeText(this, chip.text, Toast.LENGTH_SHORT).show()
-                     updateArrayWithChips()
-                 }
-
-        }) //<--TODO ne radi kad se zadnji chip oznaci da vrati na pocetnu listu, aka nema funkcije da provjeri to
-
+             chipselected.clear()
+             for (id in ids) {
+                 val chip = group.findViewById<Chip>(id!!)
+                 chipselected.add(chip.text.toString())
+                 //Toast.makeText(this, chip.text, Toast.LENGTH_SHORT).show()
+                 updateArrayWithChips()
+             }
+         } //TODO ne radi kad se zadnji chip oznaci da vrati na pocetnu listu, aka nema funkcije da provjeri to
 
 
+    db.collection("places")
+        .get()
+        .addOnSuccessListener { result ->
 
-
-        db.collection("places")
-            .get()
-            .addOnSuccessListener { result ->
-
-                for (data in result.documents) {
-                    val onelocation = data.toObject(MyLocation::class.java)
-                    if (onelocation != null) {
-                        onelocation.id = data.id
-                        temporalLocationList.add(onelocation)
-                    }
-                    locationList=temporalLocationList
-                    opcalista=temporalLocationList
+            for (data in result.documents) {
+                val onelocation = data.toObject(MyLocation::class.java)
+                if (onelocation != null) {
+                    onelocation.id = data.id
+                    temporalLocationList.add(onelocation)
                 }
-                recyclerAdapter = LocationRecyclerAdapter(temporalLocationList)
-                recyclerView.apply {
+                locationList = temporalLocationList
+                opcalista = temporalLocationList
+            }
+            recyclerAdapter = LocationRecyclerAdapter(temporalLocationList)
+            recyclerView.apply {
                 layoutManager = LinearLayoutManager(this@MainView)
                 adapter = recyclerAdapter
-                //pocetno prikazivanje stavki koje nije sortirano
-                }
+
             }
 
-                val backbutton = findViewById<ImageButton>(R.id.buttonback)
-                backbutton.setOnClickListener() {
+
+}
+
+
+        val backbutton = findViewById<ImageButton>(R.id.buttonback)
+                backbutton.setOnClickListener {
                     finish()
                 }//button za gasenje aktivnosti
 
-                val languages = resources.getStringArray(R.array.Languages)
-                val spinner = findViewById<Spinner>(R.id.spinner)
-                if (spinner != null) {
-                    val adapter2 =
-                        ArrayAdapter(this, android.R.layout.simple_spinner_item, languages)
+
+        val kategorije = resources.getStringArray(R.array.Kategorije)
+        val spinner = findViewById<Spinner>(R.id.spinner)
+        if (spinner != null) {
+            val adapter2 = ArrayAdapter(this, android.R.layout.simple_spinner_item, kategorije)
 
                     spinner.adapter = adapter2
-                    adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                         override fun onItemSelected(
                             parent: AdapterView<*>,
@@ -97,7 +111,8 @@ class MainView : AppCompatActivity(){
                         ) {
                             locationspinner=position
                             //ideja je znat u svakom trenutku
-                            performSort(position)
+                            performSortAndShowIt()
+
 
                         }
 
@@ -109,27 +124,25 @@ class MainView : AppCompatActivity(){
                             }
 
                         }
+
                     }
                 }
 
 
         val targetedLocationInput = findViewById<EditText>(R.id.TypeLocationName)
-        targetedLocationInput.setOnEditorActionListener(OnEditorActionListener { v, actionId, event ->
+        targetedLocationInput.setOnEditorActionListener(OnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 hideKeyboard()
                 performSearch(temporalLocationList)
-
-
                 return@OnEditorActionListener true
             }
             false
         })
 
-
     }
 
  fun updateArrayWithChips(){
-  var lista:ArrayList<MyLocation> =  ArrayList()
+  val lista:ArrayList<MyLocation> =  ArrayList()
 
         for(chip in chipselected){
             for(data in opcalista){
@@ -138,14 +151,23 @@ class MainView : AppCompatActivity(){
             }
         }
        locationList= lista
-       show(locationList)
-}
+      performSortAndShowIt()
+
+  }
+
+    fun areChipsSelected(chipGroup: ChipGroup){
+        if(chipGroup.checkedChipIds.size == 0){
+            locationList = opcalista
+            performSortAndShowIt()
+
+        }
+    }
 
 
-
-   // <--TODO() velika slova imaju prednost nad malim slovima u sred imena
-fun performSort(position:Int){
-    val recyclerView = findViewById<RecyclerView>(R.id.viewer)
+    // <--TODO() velika slova imaju prednost nad malim slovima u sred imena
+    //TODO  performsort and show i ukloni da prima ista u ()
+fun performSortAndShowIt(){
+val position=locationspinner
     var sortedList: ArrayList<MyLocation> = ArrayList()
     if (position == 0) {
         sortedList=locationList
@@ -183,7 +205,7 @@ fun show(list:ArrayList<MyLocation>){
     fun performSearch(locallocationList: ArrayList<MyLocation>){
         val spinner = findViewById<Spinner>(R.id.spinner)
         spinner.setSelection(0)
-        val recyclerView = findViewById<RecyclerView>(R.id.viewer)
+
         val sortedList2: ArrayList<MyLocation> = ArrayList()
         val unos = findViewById<EditText>(R.id.TypeLocationName)
         val unos2=unos.text.toString().replaceFirstChar { it.lowercase() }
@@ -214,9 +236,9 @@ fun show(list:ArrayList<MyLocation>){
 
 
 
-    fun Fragment.hideKeyboard() {
-        view?.let { activity?.hideKeyboard(it) }
-    }
+    // fun Fragment.hideKeyboard() {
+    //    view?.let { activity?.hideKeyboard(it) }
+    //}
 
     fun Activity.hideKeyboard() {
         hideKeyboard(currentFocus ?: View(this))

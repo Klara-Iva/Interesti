@@ -29,7 +29,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="20dp"
                 android:fontFamily="@font/alike"
-                android:text="Who am I even?" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/textView3"

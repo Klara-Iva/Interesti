@@ -5,7 +5,7 @@
     <string name="aboutapp">About this app</string>
 
     <string name="selected_item">Selected item:</string>
-    <string-array name="Languages">
+    <string-array name="Kategorije">
         <item>none</item>
         <item>name</item>
         <item>description</item>
