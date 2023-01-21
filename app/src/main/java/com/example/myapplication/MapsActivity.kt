@@ -59,13 +59,36 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     var cordinates = LatLng(document?.data!!["lati"] as Double,
                         document?.data!!["long"] as Double)
                     locations.add(MyMarker(document?.id!!,cordinates))
-                }
+
+                     }
 
                 for (location in locations){
                     val myMarker = mMap.addMarker(MarkerOptions().position(location.cordinates))
                     myMarker!!.tag=location.id
                     markers.add(myMarker)
+
                 }
+
+               /* for(location in locations) {
+
+                    db.collection("places")
+                        .document(location.id).update("zanimljivostBrojOcjena", 1)
+
+
+                    db.collection("places")
+                        .document(location.id).update("pristupacnost", 5)
+
+
+                    db.collection("places")
+                        .document(location.id).update("pristupacnostBrojOcjena", 1)
+
+                    db.collection("places")
+                        .document(location.id).update("zanimljivost", 5)
+                }*/
+
+
+
+
             }
 
 
@@ -84,6 +107,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             true
 
         }
+
 
     }
 

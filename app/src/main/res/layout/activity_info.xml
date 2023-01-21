@@ -18,7 +18,10 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
+
+
+
 
 
             <ImageView
@@ -46,14 +49,16 @@
                 android:layout_below="@+id/image"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
+                android:layout_centerHorizontal="true"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="21dp"
                 android:layout_marginEnd="28dp"
                 android:fontFamily="@font/alike"
+                android:scrollHorizontally="false"
                 android:text="Location Name"
+
                 android:textAlignment="center"
                 android:textSize="24sp"
-
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/image" />
@@ -62,21 +67,97 @@
                 android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/name"
+                android:layout_below="@id/save"
                 android:layout_alignParentStart="false"
                 android:layout_alignParentLeft="false"
                 android:layout_alignParentTop="false"
                 android:layout_alignParentEnd="false"
                 android:layout_alignParentRight="false"
                 android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="30dp"
                 android:fontFamily="@font/alike"
                 android:paddingBottom="70dp"
                 android:text="Location Description" />
 
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/zanimljivost"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:stepSize="1"
+                android:progressTint="?colorPrimary" />
+
+            <RatingBar
+                android:id="@+id/ratingBar2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/pristupacnost"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:stepSize="1"
+                android:progressTint="?colorPrimary" />
+
+            <Button
+                android:id="@+id/save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ratingBar2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/alike"
+                android:text="Spremi" />
+
+            <TextView
+                android:id="@+id/zanimljivost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/name"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/alike"
+                android:text="zanimljivost:" />
+
+            <TextView
+                android:id="@+id/prosjekzanimljivost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/name"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/alike"
+                android:text="prosjek" />
+
+            <TextView
+                android:id="@+id/pristupacnost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ratingBar"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/alike"
+                android:text="pristupačnost:" />
+
+            <TextView
+                android:id="@+id/prosjekpristupacnost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ratingBar"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/alike"
+                android:text="prosjek" />
 
         </RelativeLayout>
     </ScrollView>

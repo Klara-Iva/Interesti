@@ -8,7 +8,9 @@ data class MyLocation(
     var name: String="",
     var image: String,
     var description:String="",
-    var category:String=""
+    var category:String="",
+    var zanimljivost:Int?=null,
+    var pristupacnost:Int?=null
 ){
     constructor(): this("", null,null,"","","","")
 }

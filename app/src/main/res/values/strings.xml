@@ -8,9 +8,8 @@
     <string-array name="Kategorije">
         <item>none</item>
         <item>name</item>
-        <item>description</item>
-        <item>lati</item>
-        <item>long</item>
+        <item>pristupacnost</item>
+        <item>zanimljivost</item>
 
     </string-array>
 </resources>

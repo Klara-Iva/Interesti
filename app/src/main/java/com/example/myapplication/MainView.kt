@@ -37,7 +37,7 @@ class MainView : AppCompatActivity(){
         val recyclerView = findViewById<RecyclerView>(R.id.viewer)
         val temporalLocationList: ArrayList<MyLocation> = ArrayList()
 
-    //TODO kako napraviti da se chipovi stalno osluskuju
+
 
         val chipGroup = findViewById<ChipGroup>(R.id.chipGroup)
 
@@ -64,8 +64,7 @@ class MainView : AppCompatActivity(){
                  //Toast.makeText(this, chip.text, Toast.LENGTH_SHORT).show()
                  updateArrayWithChips()
              }
-         } //TODO ne radi kad se zadnji chip oznaci da vrati na pocetnu listu, aka nema funkcije da provjeri to
-
+         }
 
     db.collection("places")
         .get()
@@ -165,8 +164,7 @@ class MainView : AppCompatActivity(){
 
 
     // <--TODO() velika slova imaju prednost nad malim slovima u sred imena
-    //TODO  performsort and show i ukloni da prima ista u ()
-fun performSortAndShowIt(){
+   fun performSortAndShowIt(){
 val position=locationspinner
     var sortedList: ArrayList<MyLocation> = ArrayList()
     if (position == 0) {
@@ -177,17 +175,14 @@ val position=locationspinner
            sortedList=
                ArrayList(locationList.sortedWith(compareBy { it.name }))
        }
+
     else if (position == 2) {
          sortedList =
-            ArrayList(locationList.sortedWith(compareBy { it.description }))
-          }
+            ArrayList(locationList.sortedByDescending {it.pristupacnost  })
+           }
     else if (position == 3) {
          sortedList =
-            ArrayList(locationList.sortedWith(compareBy { it.lati }))
-           }
-    else if (position == 4) {
-         sortedList =
-            ArrayList(locationList.sortedWith(compareBy { it.long }))
+            ArrayList(locationList.sortedByDescending { it.zanimljivost })
           }
 
     show(sortedList)
