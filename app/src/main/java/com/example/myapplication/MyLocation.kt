@@ -10,7 +10,10 @@ data class MyLocation(
     var description:String="",
     var category:String="",
     var zanimljivost:Int?=null,
-    var pristupacnost:Int?=null
+    var pristupacnost:Int?=null,
+    var zanimljivostBrojOcjena: Int?=null,
+    var pristupacnostBrojOcjena: Int?=null
+
 ){
     constructor(): this("", null,null,"","","","")
 }

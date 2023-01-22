@@ -178,11 +178,11 @@ val position=locationspinner
 
     else if (position == 2) {
          sortedList =
-            ArrayList(locationList.sortedByDescending {it.pristupacnost  })
-           }
+            ArrayList(locationList.sortedWith(compareBy{(it.pristupacnost!! / it.pristupacnostBrojOcjena!!).toFloat() }))
+           }//TODO ne radi sort dobro s prosjecima
     else if (position == 3) {
          sortedList =
-            ArrayList(locationList.sortedByDescending { it.zanimljivost })
+            ArrayList(locationList.sortedByDescending { (it.zanimljivost!!/it.zanimljivostBrojOcjena!!).toFloat() })
           }
 
     show(sortedList)
