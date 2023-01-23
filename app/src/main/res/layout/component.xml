@@ -14,25 +14,46 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="5dp"
-        android:text="TextView"
+        android:fontFamily="@font/alike"
+        android:text="Naziv lokacije"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/loc_picture"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/longitude"
-        android:layout_width="0dp"
+        android:id="@+id/prikazavgzanimljivost"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="5dp"
-        android:text="TextView"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/alike"
+        android:text="zanimljivost"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.017"
         app:layout_constraintStart_toEndOf="@+id/loc_picture"
         app:layout_constraintTop_toBottomOf="@+id/location_name" />
+
+    <TextView
+        android:id="@+id/prikazavgpristupacnost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="5dp"
+        android:fontFamily="@font/alike"
+        android:text="pristupacnost"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.018"
+        app:layout_constraintStart_toEndOf="@+id/loc_picture"
+        app:layout_constraintTop_toBottomOf="@+id/prikazavgzanimljivost" />
 
     <ImageView
         android:id="@+id/loc_picture"
@@ -42,8 +63,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
 
         android:adjustViewBounds="true"
 

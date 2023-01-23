@@ -11,6 +11,7 @@ import android.widget.*
 import android.widget.TextView.OnEditorActionListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.iterator
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
@@ -37,6 +38,12 @@ class MainView : AppCompatActivity(){
         val recyclerView = findViewById<RecyclerView>(R.id.viewer)
         val temporalLocationList: ArrayList<MyLocation> = ArrayList()
 
+        recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                recyclerView.context,
+                DividerItemDecoration.VERTICAL
+            )
+        )
 
 
         val chipGroup = findViewById<ChipGroup>(R.id.chipGroup)
@@ -165,29 +172,37 @@ class MainView : AppCompatActivity(){
 
     // <--TODO() velika slova imaju prednost nad malim slovima u sred imena
    fun performSortAndShowIt(){
-val position=locationspinner
-    var sortedList: ArrayList<MyLocation> = ArrayList()
-    if (position == 0) {
-        sortedList=locationList
+        val ocjena = findViewById<TextView>(R.id.prikazavgzanimljivost)
+        val position=locationspinner
+        var sortedList: ArrayList<MyLocation> = ArrayList()
+        when(position){
+            1 -> {
+                sortedList=
+                    ArrayList(locationList.sortedWith(compareBy { it.name }))
 
-          }
-       if (position == 1) {
-           sortedList=
-               ArrayList(locationList.sortedWith(compareBy { it.name }))
-       }
+            }
+            2 -> {
+                sortedList=
+                    ArrayList(locationList.sortedWith(compareByDescending{
+                            it.avgZanimljivost
+                    }))
 
-    else if (position == 2) {
-         sortedList =
-            ArrayList(locationList.sortedWith(compareBy{(it.pristupacnost!! / it.pristupacnostBrojOcjena!!).toFloat() }))
-           }//TODO ne radi sort dobro s prosjecima
-    else if (position == 3) {
-         sortedList =
-            ArrayList(locationList.sortedByDescending { (it.zanimljivost!!/it.zanimljivostBrojOcjena!!).toFloat() })
-          }
+            }
+            3 -> {
+                sortedList=
+                    ArrayList(locationList.sortedWith(compareByDescending{
+                            it.avgPristupacnost
+                    }))
 
-    show(sortedList)
+            }
+            else -> {
+                sortedList = locationList
+            }
+        }
+        show(sortedList)
 
-}
+
+    }
 
 fun show(list:ArrayList<MyLocation>){
     val recyclerView = findViewById<RecyclerView>(R.id.viewer)
@@ -197,6 +212,8 @@ fun show(list:ArrayList<MyLocation>){
         adapter = recyclerAdapter
     }
 }
+
+
     fun performSearch(locallocationList: ArrayList<MyLocation>){
         val spinner = findViewById<Spinner>(R.id.spinner)
         spinner.setSelection(0)

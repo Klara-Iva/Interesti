@@ -1,19 +1,17 @@
 package com.example.myapplication
 
-import android.app.ActivityOptions
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+
 
 class LocationRecyclerAdapter(val items: ArrayList<MyLocation> ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
             RecyclerView.ViewHolder {
+
         return LocationViewHolder(
             LayoutInflater.from(parent.context).inflate(
                 R.layout.component,

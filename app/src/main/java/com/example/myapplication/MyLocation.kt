@@ -12,7 +12,9 @@ data class MyLocation(
     var zanimljivost:Int?=null,
     var pristupacnost:Int?=null,
     var zanimljivostBrojOcjena: Int?=null,
-    var pristupacnostBrojOcjena: Int?=null
+    var pristupacnostBrojOcjena: Int?=null,
+    var avgZanimljivost:Double?=null,
+    var avgPristupacnost:Double?=null,
 
 ){
     constructor(): this("", null,null,"","","","")

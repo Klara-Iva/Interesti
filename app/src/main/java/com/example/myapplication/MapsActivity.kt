@@ -69,23 +69,43 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
                 }
 
-               /* for(location in locations) {
+               /*for(location in locations) {
 
                     db.collection("places")
-                        .document(location.id).update("zanimljivostBrojOcjena", 1)
+                        .document(location.id)
+                        .get()
+                        .addOnSuccessListener {
+                            val zan: Double = it?.data!!["zanimljivost"].toString().toDouble()
+                            val zanBrOc : Double= it?.data!!["zanimljivostBrojOcjena"].toString().toDouble()
+                            val avgZan: Double = zan/zanBrOc
+                            val pris: Double= it?.data!!["pristupacnost"].toString().toDouble()
+                            val prisBrOc : Double= it?.data!!["pristupacnostBrojOcjena"].toString().toDouble()
+                            val avgPris: Double = pris/prisBrOc
+                            db.collection("places")
+                                .document(location.id)
+                                .update(
+                                    "avgZanimljivost",
+                                    DecimalFormat("#.00").format(avgZan).toDouble()
+                                )
+                            db.collection("places")
+                                .document(location.id)
+                                .update(
+                                    "avgPristupacnost",
+                                    DecimalFormat("#.00").format(avgPris).toDouble()
+                                )
+                        }
+                   db.collection("places")
+                       .document(location.id).update("pristupacnostBrojOcjena", 1)
 
+                   db.collection("places")
+                       .document(location.id).update("zanimljivost", 5)
+                   db.collection("places")
+                       .document(location.id).update("zanimljivostBrojOcjena", 1)
 
-                    db.collection("places")
-                        .document(location.id).update("pristupacnost", 5)
-
-
-                    db.collection("places")
-                        .document(location.id).update("pristupacnostBrojOcjena", 1)
-
-                    db.collection("places")
-                        .document(location.id).update("zanimljivost", 5)
-                }*/
-
+                   db.collection("places")
+                       .document(location.id).update("pristupacnost", 5)
+                }
+*/
 
 
 

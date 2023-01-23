@@ -8,8 +8,8 @@
     <string-array name="Kategorije">
         <item>none</item>
         <item>name</item>
-        <item>pristupacnost</item>
         <item>zanimljivost</item>
+        <item>pristupačnost</item>
 
     </string-array>
 </resources>

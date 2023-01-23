@@ -5,10 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.text.DecimalFormat
 
 class InfoActivity : AppCompatActivity() {
     private val db = Firebase.firestore
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
@@ -22,7 +22,10 @@ class InfoActivity : AppCompatActivity() {
         var description=findViewById<TextView>(R.id.description)
         var image=findViewById<ImageView>(R.id.image)
         val backButton=findViewById<ImageView>(R.id.button2)
-
+        var pristupacnost: Double = 1.0
+        var pristupacnostBrojOcjena: Double = 1.0
+        var zanimljivost: Double = 1.0
+        var zanimljivostBrojOcjena: Double = 1.0
 
 
 
@@ -37,19 +40,18 @@ class InfoActivity : AppCompatActivity() {
                 description.text = document?.data!!["description"].toString()
                 Glide.with(this).load(document?.data!!["image"]).into(image)
 
-                var pristupacnost= document?.data!!["pristupacnost"].toString().toInt()
-                var pristupacnostBrojOcjena= document?.data!!["pristupacnostBrojOcjena"].toString().toInt()
-                var zanimljivost = document?.data!!["zanimljivost"].toString().toInt()
-                var zanimljivostBrojOcjena = document?.data!!["zanimljivostBrojOcjena"].toString().toInt()
+                pristupacnost= document?.data!!["pristupacnost"].toString().toDouble()
+                pristupacnostBrojOcjena= document?.data!!["pristupacnostBrojOcjena"].toString().toDouble()
+                zanimljivost = document?.data!!["zanimljivost"].toString().toDouble()
+                zanimljivostBrojOcjena = document?.data!!["zanimljivostBrojOcjena"].toString().toDouble()
 
 
-
-                        prosjekpristupacnost.text =String.format("%.2f",pristupacnost / pristupacnostBrojOcjena.toFloat())
-
-                prosjekzanimljivost.text =String.format("%.2f",zanimljivost / zanimljivostBrojOcjena.toFloat())
+                prosjekpristupacnost.text = DecimalFormat("#.00").format(document?.data!!["avgPristupacnost"])+" ⭐"
+                prosjekzanimljivost.text = DecimalFormat("#.00").format(document?.data!!["avgZanimljivost"])+" ⭐"
 
 
             }
+
 
 
         val rBar = findViewById<RatingBar>(R.id.ratingBar)
@@ -65,39 +67,61 @@ class InfoActivity : AppCompatActivity() {
                     ).show()
                 }
                 else {
+                    pristupacnost += rBar2.rating.toDouble()
+                    pristupacnostBrojOcjena+=1
+                    zanimljivost += rBar.rating.toDouble()
+                    zanimljivostBrojOcjena += 1
+                    var averagePristupacnost: Double = pristupacnost/ pristupacnostBrojOcjena
+                    var averageZanimljivost: Double = zanimljivost/ zanimljivostBrojOcjena
+                    prosjekpristupacnost.text = DecimalFormat("#.00").format(averagePristupacnost)
+                    prosjekzanimljivost.text = DecimalFormat("#.00").format(averageZanimljivost)
 
+                    db.collection("places")
+                        .document(id)
+                        .update(
+                            "avgPristupacnost", averagePristupacnost,
+                            "avgZanimljivost", averageZanimljivost,
+                            "pristupacnost", pristupacnost,
+                            "pristupacnostBrojOcjena", pristupacnostBrojOcjena,
+                            "zanimljivost", zanimljivost,
+                            "zanimljivostBrojOcjena", zanimljivostBrojOcjena
+                        )
 
-
-                    val docRef = db.collection("places").document(id)
+                   /* val docRef = db.collection("places").document(id)
                     docRef.get()
                         .addOnSuccessListener { document ->
-                            var pristupacnost = document?.data!!["pristupacnost"].toString().toInt()
+                            var pristupacnost = document?.data!!["pristupacnost"].toString().toDouble()
                             var pristupacnostBrojOcjena =
-                                document?.data!!["pristupacnostBrojOcjena"].toString().toInt()
-                             var zanimljivost = document?.data!!["zanimljivost"].toString().toInt()
+                                document?.data!!["pristupacnostBrojOcjena"].toString().toDouble()
+                            var averagePristupacnost: Double = pristupacnost+rBar2.rating.toDouble() / pristupacnostBrojOcjena+1
+                            var zanimljivost = document?.data!!["zanimljivost"].toString().toDouble()
                             var zanimljivostBrojOcjena =
-                                document?.data!!["zanimljivostBrojOcjena"].toString().toInt()
+                                document?.data!!["zanimljivostBrojOcjena"].toString().toDouble()
+                            var averageZanimljivost: Double = zanimljivost+rBar.rating.toDouble() / zanimljivostBrojOcjena+1
 
                             zanimljivost += rBar.rating.toInt()
                             db.collection("places")
                                 .document(id).update("zanimljivost", zanimljivost)
-
                             zanimljivostBrojOcjena += 1
                             db.collection("places")
                                 .document(id).update("zanimljivostBrojOcjena", zanimljivostBrojOcjena)
+                            db.collection("places")
+                                .document(id).update("avgZanimljivost", averageZanimljivost)
+
                             pristupacnost += rBar2.rating.toInt()
                             db.collection("places")
                                 .document(id).update("pristupacnost", pristupacnost)
                             pristupacnostBrojOcjena += 1
                             db.collection("places")
                                 .document(id).update("pristupacnostBrojOcjena", pristupacnostBrojOcjena)
-                            prosjekpristupacnost.text =String.format("%.2f",pristupacnost / pristupacnostBrojOcjena.toFloat())
+                            db.collection("places")
+                                .document(id).update("avgPristupacnost", averagePristupacnost)
 
-                            prosjekzanimljivost.text =String.format("%.2f",zanimljivost / zanimljivostBrojOcjena.toFloat())
+                            prosjekpristupacnost.text = averagePristupacnost.toString()
 
-
-                        }
-                }
+                            prosjekzanimljivost.text =averageZanimljivost.toString()
+                        }*/
+                    }
                 }
             }
         }

@@ -2,11 +2,10 @@ package com.example.myapplication
 
 import android.annotation.SuppressLint
 import android.view.View
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import java.text.DecimalFormat
 
 class LocationViewHolder (val view: View): RecyclerView.ViewHolder(view)
 {
@@ -15,8 +14,10 @@ class LocationViewHolder (val view: View): RecyclerView.ViewHolder(view)
         view.findViewById<ImageView>(R.id.loc_picture)
     private val locationname =
         view.findViewById<TextView>(R.id.location_name)
-    private val location =
-        view.findViewById<TextView>(R.id.longitude)
+    private val pz =
+        view.findViewById<TextView>(R.id.prikazavgzanimljivost)
+    private val pp =
+        view.findViewById<TextView>(R.id.prikazavgpristupacnost)
 
 
 
@@ -30,9 +31,13 @@ class LocationViewHolder (val view: View): RecyclerView.ViewHolder(view)
 
         Glide.with(view.context).load(location.image).into(locationImage)
         locationname.setText(location.name)
-        this.location.setText("location: " +location.lati.toString()+", "+location.long.toString())
+        pz.setText("zanimljivost: "+ DecimalFormat("#.00").format(location.avgZanimljivost)+"⭐")
+        pp.setText("pristupačnost "+ DecimalFormat("#.00").format(location.avgPristupacnost)+"⭐")
+
+
+            }
+
+       // this.prosjek.setText("location: " +location.lati.toString()+", "+location.long.toString())
 
 }
 
-
-}
