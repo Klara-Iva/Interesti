@@ -51,13 +51,13 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="25dp"
-                android:layout_marginTop="21dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="28dp"
-                android:fontFamily="@font/alike"
+
                 android:scrollHorizontally="false"
                 android:text="Location Name"
 
-                android:textAlignment="center"
+                android:textAlignment="textStart"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -79,21 +79,22 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="30dp"
-                android:fontFamily="@font/alike"
+android:fontFamily="@font/alike"
                 android:paddingBottom="70dp"
                 android:text="Location Description" />
 
             <RatingBar
                 android:id="@+id/ratingBar"
+                style="?android:attr/ratingBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/zanimljivost"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="30dp"
-                android:stepSize="0.5"
-                android:progressTint="?colorPrimary" />
+                android:progressTint="?colorPrimary"
+                android:stepSize="0.5" />
 
             <RatingBar
                 android:id="@+id/ratingBar2"
@@ -102,30 +103,32 @@
                 android:layout_below="@id/pristupacnost"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="30dp"
-                android:stepSize="0.5"
-                android:progressTint="?colorPrimary" />
+                android:progressTint="?colorPrimary"
+                android:stepSize="0.5" />
 
             <Button
                 android:id="@+id/save"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ratingBar2"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/alike"
-                android:text="Spremi" />
+                android:text="Spremi"
+                app:cornerRadius="20dp" />
 
             <TextView
                 android:id="@+id/zanimljivost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/name"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/alike"
-                android:text="zanimljivost:" />
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="24dp"
+
+                android:text="zanimljivost:"
+                android:textColor="?android:textColorSecondaryInverse" />
 
             <TextView
                 android:id="@+id/prosjekzanimljivost"
@@ -133,20 +136,22 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/name"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:fontFamily="@font/alike"
-                android:text="prosjek" />
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="32dp"
+
+                android:text="prosjek"
+                android:textColor="?android:textColorSecondaryInverse" />
 
             <TextView
                 android:id="@+id/pristupacnost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ratingBar"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/alike"
-                android:text="pristupačnost:" />
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="32dp"
+
+                android:text="pristupačnost:"
+                android:textColor="?android:textColorSecondaryInverse" />
 
             <TextView
                 android:id="@+id/prosjekpristupacnost"
@@ -154,10 +159,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ratingBar"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:fontFamily="@font/alike"
-                android:text="prosjek" />
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+
+                android:text="prosjek"
+                android:textColor="?android:textColorSecondaryInverse" />
 
         </RelativeLayout>
     </ScrollView>

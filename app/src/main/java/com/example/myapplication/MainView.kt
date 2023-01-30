@@ -5,13 +5,11 @@ import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
-import android.widget.TextView.OnEditorActionListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.iterator
-import androidx.recyclerview.widget.DividerItemDecoration
+
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
@@ -38,12 +36,7 @@ class MainView : AppCompatActivity(){
         val recyclerView = findViewById<RecyclerView>(R.id.viewer)
         val temporalLocationList: ArrayList<MyLocation> = ArrayList()
 
-        recyclerView.addItemDecoration(
-            DividerItemDecoration(
-                recyclerView.context,
-                DividerItemDecoration.VERTICAL
-            )
-        )
+
 
 
         val chipGroup = findViewById<ChipGroup>(R.id.chipGroup)
@@ -97,10 +90,7 @@ class MainView : AppCompatActivity(){
 }
 
 
-        val backbutton = findViewById<ImageButton>(R.id.buttonback)
-                backbutton.setOnClickListener {
-                    finish()
-                }//button za gasenje aktivnosti
+
 
 
         val kategorije = resources.getStringArray(R.array.Kategorije)
@@ -135,7 +125,7 @@ class MainView : AppCompatActivity(){
                 }
 
 
-        val targetedLocationInput = findViewById<EditText>(R.id.TypeLocationName)
+     /*   val targetedLocationInput = findViewById<EditText>(R.id.TypeLocationName)
         targetedLocationInput.setOnEditorActionListener(OnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 hideKeyboard()
@@ -143,9 +133,43 @@ class MainView : AppCompatActivity(){
                 return@OnEditorActionListener true
             }
             false
-        })
+        })*/
 
     }
+
+    override fun onResume() {
+        super.onResume()
+        val temporalLocationList: ArrayList<MyLocation> = ArrayList()
+        val chipGroup = findViewById<ChipGroup>(R.id.chipGroup)
+
+        db.collection("places")
+            .get()
+            .addOnSuccessListener { result ->
+
+                for (data in result.documents) {
+                    val onelocation = data.toObject(MyLocation::class.java)
+                    if (onelocation != null) {
+                        onelocation.id = data.id
+                        temporalLocationList.add(onelocation)
+                    }
+                    locationList = temporalLocationList
+                    opcalista = temporalLocationList
+                }
+                val spinner = findViewById<Spinner>(R.id.spinner)
+
+                locationspinner=spinner.selectedItemPosition
+                val ids = chipGroup.checkedChipIds
+                chipselected.clear()
+                for (id in ids) {
+                    val chip = chipGroup.findViewById<Chip>(id!!)
+                    chipselected.add(chip.text.toString())
+
+                    updateArrayWithChips()
+                }
+            }
+
+    }
+
 
  fun updateArrayWithChips(){
   val lista:ArrayList<MyLocation> =  ArrayList()
@@ -172,7 +196,7 @@ class MainView : AppCompatActivity(){
 
     // <--TODO() velika slova imaju prednost nad malim slovima u sred imena
    fun performSortAndShowIt(){
-        val ocjena = findViewById<TextView>(R.id.prikazavgzanimljivost)
+
         val position=locationspinner
         var sortedList: ArrayList<MyLocation> = ArrayList()
         when(position){
@@ -213,7 +237,7 @@ fun show(list:ArrayList<MyLocation>){
     }
 }
 
-
+/*
     fun performSearch(locallocationList: ArrayList<MyLocation>){
         val spinner = findViewById<Spinner>(R.id.spinner)
         spinner.setSelection(0)
@@ -244,7 +268,7 @@ fun show(list:ArrayList<MyLocation>){
             show(locationList)
 
         }
-    }
+    }*/
 
 
 

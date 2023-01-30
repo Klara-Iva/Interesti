@@ -73,8 +73,8 @@ class InfoActivity : AppCompatActivity() {
                     zanimljivostBrojOcjena += 1
                     var averagePristupacnost: Double = pristupacnost/ pristupacnostBrojOcjena
                     var averageZanimljivost: Double = zanimljivost/ zanimljivostBrojOcjena
-                    prosjekpristupacnost.text = DecimalFormat("#.00").format(averagePristupacnost)
-                    prosjekzanimljivost.text = DecimalFormat("#.00").format(averageZanimljivost)
+                    prosjekpristupacnost.text = DecimalFormat("#.00").format(averagePristupacnost)+" ⭐"
+                    prosjekzanimljivost.text = DecimalFormat("#.00").format(averageZanimljivost)+" ⭐"
 
                     db.collection("places")
                         .document(id)
